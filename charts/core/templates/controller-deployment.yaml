@@ -190,7 +190,7 @@ spec:
             - mountPath: /etc/config
               name: config-volume
               readOnly: true
-          {{- .Values.controller.prime.enabled }}
+          {{- if .Values.controller.prime.enabled }}
             - mountPath: /etc/neuvector/prime/compliance/
               name: prime-config
               readOnly: true
