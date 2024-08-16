@@ -190,6 +190,11 @@ spec:
             - mountPath: /etc/config
               name: config-volume
               readOnly: true
+          {{- .Values.controller.prime.enabled }}
+            - mountPath: /etc/neuvector/prime/compliance/
+              name: prime-config
+              readOnly: true
+          {{- end }}  
           {{- if .Values.controller.certificate.secret }}
             - mountPath: /etc/neuvector/certs/ssl-cert.key
               subPath: {{ .Values.controller.certificate.keyFile }}
@@ -287,7 +292,7 @@ spec:
               - secret:
                   name: neuvector-secret
                   optional: true
-      {{- if .Values.prime }}
+      {{- if .Values.controller.prime.enabled }}
         - emptyDir: {}
           name: prime-config
       {{- end }}
