@@ -23,6 +23,7 @@ Parameter | Description | Default | Notes
 `psp` | NeuVector Pod Security Policy when psp policy is enabled | `false` |
 `serviceAccount` | Service account name for NeuVector components | `default` |
 `leastPrivilege` | Use least privileged service account | `false` |
+`prime` | NeuVector prime deployment | `false` |
 `autoGenerateCert` | Automatically generate certificate or not | `true` |
 `internal.certmanager.enabled` | cert-manager is installed for the internal certificates | `false` |
 `internal.certmanager.secretname` | Name of the secret to be used for the internal certificates | `neuvector-internal` |

@@ -224,6 +224,21 @@ spec:
               name: internal-cert
               readOnly: true
           {{- end }}
+      {{- if  .Values.controller.prime.enabled }}
+        - name: prime-config-container
+          {{- if .Values.controller.prime.image.hash }}
+          image: "{{ .Values.registry }}/{{ .Values.controller.prime.image.repository }}@{{ .Values.controller.prime.image.hash }}"
+          {{- else }}
+          image: "{{ .Values.registry }}/{{ .Values.controller.prime.image.repository }}:{{ .Values.controller.prime.image.tag }}"
+          {{- end }}
+          imagePullPolicy: Always
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /usr/share
+            name: prime-config
+      {{- end }} 
       terminationGracePeriodSeconds: 300
       restartPolicy: Always
       volumes:
@@ -272,6 +287,10 @@ spec:
               - secret:
                   name: neuvector-secret
                   optional: true
+      {{- if .Values.prime }}
+        - emptyDir: {}
+          name: prime-config
+      {{- end }}
       {{- if eq "true" (toString .Values.autoGenerateCert) }}
         - name: cert
           secret:

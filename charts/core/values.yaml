@@ -285,7 +285,12 @@ controller:
         - Fullname: admin
           Password:
           Role: admin
-
+  prime:
+    enabled: false
+    image:
+      repository: neuvector/complianceconfig
+      tag: 1.0.0
+      hash:
 enforcer:
   # If false, enforcer will not be installed
   enabled: true
