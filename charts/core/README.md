@@ -25,7 +25,7 @@ cve:
 ```
 ## Multiple branches 
 
-Helm charts supports multiple branches for supporting security updates for previous versions.
+Helm charts supports multiple branches for supporting security updates for previous app versions.
 
 ```
 helm charts v2.8.x => will stay with NV v5.5.1 forever. 
